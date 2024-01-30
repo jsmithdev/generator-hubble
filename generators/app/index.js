@@ -56,40 +56,13 @@ export default class extends Generator {
 	}
 
   	writing() {
-		if(this.props.areYouSure) {
-
-			
-			const NON_TPLS = [
-				'artifacts',
-				'build',
-				'resources/icon.svg',
-				'src/hello-world.ts',
-				'src/tailwind.css',
-				'.gitignore',
-				'rollup.config.js',
-				'tailwind.config.js',
-				'typings.d.ts',
-			  ];
-
-			  const TPLS = [
-				'_index.html',
-				'_package.json',
-				'_README.md',
-			  ];
-		  
-			  NON_TPLS.map((n) => {
-				return this.fs.copy(
-				  this.templatePath(n),
-				  this.destinationPath(n),
-				  this.props);
-			  });
-		  
-			  TPLS.map((n) => {
-				return this.fs.copyTpl(
-				  this.templatePath(n),
-				  this.destinationPath(n.replace(/(_)/gi, '')),
-				  this.props);
-			  });
+		if(this.props.AreYouSure) {
+			this.log( chalk.blue(`🎉 Creating ${this.props.name} and copying files...`) )
+			this.fs.copyTpl(
+				this.templatePath(),
+				this.destinationPath(),
+				this.props,
+			);
 		}
 		else {
 			this.log( chalk.red(`🔥 Canceling ${this.props.name}...`) )
