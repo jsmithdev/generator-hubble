@@ -8,12 +8,12 @@ const execute = promisify(exec);
 
 
 export default class extends Generator {
+
   	prompting() {
 		
 		this.log(
 			yosay( `Welcome to the ${chalk.blue("hubble")} generator!` )
 		);
-
 
 		const prompts = [
 			{
@@ -56,8 +56,9 @@ export default class extends Generator {
 	}
 
   	writing() {
-		if(this.props.AreYouSure) {
-			this.log( chalk.blue(`🎉 Creating ${this.props.name} and copying files...`) )
+
+		if(this.props.areYouSure) {
+			this.log( chalk.blue(`🎉 Copying files...`) )
 			this.fs.copyTpl(
 				this.templatePath(),
 				this.destinationPath(),
@@ -65,7 +66,7 @@ export default class extends Generator {
 			);
 		}
 		else {
-			this.log( chalk.red(`🔥 Canceling ${this.props.name}...`) )
+			this.log( chalk.red(`🔥 Canceling ${this.props.packageName}...`) )
 		}
 	}
 
@@ -75,18 +76,15 @@ export default class extends Generator {
 
 			if(!this.props.areYouSure) return undefined;
 
-			this.log( chalk.green(`🎉 Created ${this.props.name} and copied files...`) )
+			this.log( chalk.green(`🎉 Created ${this.props.packageName}...`) )
 
 			this.log( `${chalk.blue(`📚 Installing dependencies...`)}` )
 
-			await execute(`cd ${this.props.name} && npm i`);
+			await execute(`npm i`);
 
 			this.log( `${chalk.green(`📚 Installed dependencies...`)}` )
 
-			this.log()
-			this.log(`${chalk.blue(`cd ${this.props.name} && npm start`)}` )
-			this.log(`🚀 Run above to go to your new project and start it up` )
-			this.log()
+			this.log(`🚀 Happy Hacking` )
 		}
 		catch (error) {
 			this.log( `🔥 ${chalk.red(`Error Installing: ${error.message}`)}` )
