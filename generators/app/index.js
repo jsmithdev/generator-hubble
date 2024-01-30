@@ -31,7 +31,6 @@ export default class extends Generator {
 				type: "string",
 				name: "elementName",
 				message: "What's the name of the element?",
-				default: this.props.packageName.replace('hubble-', '')
 			},
 			{
 				type: "string",
