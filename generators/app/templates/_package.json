@@ -1,0 +1,39 @@
+{
+  "name": "<%= packageName %>",
+  "version": "0.0.1",
+  "description": "A hubble to: <%= description %>",
+  "main": "build/lit.js",
+  "author": "<%= authorName %>",
+  "hubbles": {
+    "name": "<%= elementName %>",
+    "description": "<%= description %>",
+    "site": "https://github.com/<%= gitUserName %>/<%= packageName %>",
+    "icon": "https://raw.githubusercontent.com/<%= gitUserName %>/<%= packageName %>/main/resources/icon.svg?raw=true",
+    "executable": "https://unpkg.com/<%= packageName %>@0.0.1/build/lit.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:tw": "tailwindcss -i ./src/tailwind.css -o ./artifacts/tw.css",
+    "build:tw:watch": "npm run build:tw --watch",
+    "build:twlit": "twlit --output ./artifacts/twlit.js --input ./artifacts/tw.css  --watch",
+    "build:twlit:watch": "npm run build:twlit --watch",
+    "build:js": "rollup -c",
+    "build:js:watch": "rollup -c --watch",
+    "build:all": "npm run build:tw && npm run build:twlit && npm run build:js",
+    "dev": "concurrently \"tailwindcss -i ./src/tailwind.css -o ./artifacts/tw.css --watch\" \"twlit --output ./artifacts/twlit.js --input ./artifacts/tw.css  --watch\" \"rollup -c --watch\""
+  },
+  "dependencies": {
+    "lit": "^3.1.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@web/rollup-plugin-copy": "^0.5.1",
+    "concurrently": "^8.2.2",
+    "rollup": "^4.9.6",
+    "tailwindcss": "^3.4.1",
+    "twlit": "^0.0.1-alpha.37",
+    "typescript": "^4.9.5"
+  }
+}
