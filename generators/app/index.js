@@ -17,12 +17,6 @@ export default class extends Generator {
 
 		const prompts = [
 			{
-				type: "confirm",
-				name: "areYouSure",
-				message: `Would you like to create the project in the current directory?`,
-				default: true
-			},
-			{
 				type: "string",
 				name: "packageName",
 				message: "What's the name of the project?",
@@ -46,6 +40,12 @@ export default class extends Generator {
 				type: "string",
 				name: "gitUserName",
 				message: "What's the author's GitHub username?",
+			},
+			{
+				type: "confirm",
+				name: "areYouSure",
+				message: `Are you sure you want to create the project in the current directory?`,
+				default: true
 			},
 		];
 
@@ -84,7 +84,7 @@ export default class extends Generator {
 
 			this.log( `${chalk.green(`📚 Installed dependencies...`)}` )
 
-			this.log(`🚀 Happy Hacking` )
+			this.log(`🚀 Happy Hubbles` )
 		}
 		catch (error) {
 			this.log( `🔥 ${chalk.red(`Error Installing: ${error.message}`)}` )
