@@ -44,7 +44,7 @@ export default class extends Generator {
 			{
 				type: "confirm",
 				name: "areYouSure",
-				message: `Are you sure you want to create the project in the current directory?`,
+				message: `Are you sure you want to create the project?`,
 				default: true
 			},
 		];
@@ -61,7 +61,7 @@ export default class extends Generator {
 			this.log( chalk.blue(`🎉 Copying files...`) )
 			this.fs.copyTpl(
 				this.templatePath(),
-				this.destinationPath(),
+				this.destinationPath(this.props.packageName),
 				this.props,
 			);
 		}
@@ -73,21 +73,25 @@ export default class extends Generator {
 	async install(){
 		try {
 
-
 			if(!this.props.areYouSure) return undefined;
-
-			this.log( chalk.green(`🎉 Created ${this.props.packageName}...`) )
 
 			this.log( `${chalk.blue(`📚 Installing dependencies...`)}` )
 
-			await execute(`npm i`);
+			try {
+				await execute(`cd ${this.destinationPath(this.props.packageName)} && npm i`);
+			
+				this.log( `${chalk.green(`📚 Installed dependencies...`)}` )
 
-			this.log( `${chalk.green(`📚 Installed dependencies...`)}` )
-
-			this.log(`🚀 Happy Hubbles` )
+				this.log( `${chalk.green(`🚀 Successfully created ${this.props.packageName} hubble!`)}` )
+			}
+			catch (error) {
+				this.log( `🔥 ${chalk.red(`Failed to install dependencies:`)} ${error.message}` )
+				this.log( `${chalk.blue(`Be sure to install dependencies later (npm install)`)}` )
+				this.log( `${chalk.green(`🚀 Successfully created ${this.props.packageName} hubble!`)}` )
+			}
 		}
 		catch (error) {
-			this.log( `🔥 ${chalk.red(`Error Installing: ${error.message}`)}` )
+			this.log( `🔥 ${chalk.red(`Error Installing:`)} ${error.message}` )
 		}
 	}
 }
