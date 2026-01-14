@@ -87,7 +87,7 @@ export default class extends Generator {
 			catch (error) {
 				this.log( `🔥 ${chalk.red(`Failed to install dependencies:`)} ${error.message}` )
 				this.log( `${chalk.blue(`Be sure to install dependencies later (npm install)`)}` )
-				this.log( `${chalk.green(`🚀 Successfully created ${this.props.packageName} hubble!`)}` )
+				this.log( `${chalk.green(`🚀 Successfully created ${this.props.packageName}!`)}` )
 			}
 		}
 		catch (error) {
