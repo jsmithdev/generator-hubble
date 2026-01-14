@@ -1,8 +1,8 @@
 {
   "name": "generator-hubble",
   "type": "module",
-  "version": "0.0.6",
-  "description": "A yeoman generator to easily create a lit-element project with tailwindcss and typescript",
+  "version": "0.0.7",
+  "description": "A yeoman generator to quickly create hubbles with lit, tailwind and typescript.",
   "homepage": "https://github.com/jsmithdev/generator-hubble",
   "author": {
     "name": "jsmithdev",
